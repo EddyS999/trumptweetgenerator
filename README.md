@@ -9,7 +9,7 @@ visualize a tweet.
 ```
 git clone https://github.com/EddyS999/trumptweetgenerator.git
 ```
-2) Run project
+2) Run project  
 ```
 /trumptweetgenerator/main.py
 ```
