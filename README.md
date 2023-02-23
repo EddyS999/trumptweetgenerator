@@ -6,7 +6,7 @@ visualize a tweet.
 
 ## Getting started 
 ```
-git clone link_of_this_repositoy
+git clone https://github.com/EddyS999/trumptweetgenerator.git
 ```
 
 ## Images
