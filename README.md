@@ -13,6 +13,6 @@ git clone https://github.com/EddyS999/trumptweetgenerator.git
 ```
 /trumptweetgenerator/main.py
 ```
-## Images
-![image](https://user-images.githubusercontent.com/71152540/218901781-d0ef99d6-461d-403b-beb5-f228233360f7.png)
+## Images  
+![image](https://user-images.githubusercontent.com/71152540/221026018-34fd9348-972d-46ae-93ab-1dd6fe770f5c.png)
 
