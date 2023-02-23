@@ -19,5 +19,5 @@ git clone https://github.com/EddyS999/trumptweetgenerator.git
 ```
 "NBC on TV1 on Thursdays on TV1 with a Wishing a Wishing you need, go need, you back--do coming back"  
 ```
-Well... As you can see sentences do not make sens for the moment but i'll work on it or you can help me ! 
+Well... As you can see, sentences do not make sens for the moment but i'll work on it or you can help me ! 
 
