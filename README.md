@@ -5,9 +5,8 @@ on donald trump's twitter profile. From a csv file, the program also generates a
 visualize a tweet.
 
 ## Getting started 
-```python
-def function():
-    pass
+```
+git clone link_of_this_repositoy
 ```
 
 ## Images
