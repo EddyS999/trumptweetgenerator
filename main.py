@@ -8,7 +8,7 @@ def main():
     G = tweet.load_graph("text.txt")
 
     #generate graph and sentence
-    tweet.browsing_graph(G,15,1)
+    tweet.browsing_graph(G,20,1)
     reloaded_G = tweet.reload_graph("generated_sentence.txt")
     tweet.display(reloaded_G)
 
