@@ -3,8 +3,6 @@ import matplotlib.pyplot as plt
 import random
 import networkx as nx
 
-
-
 #filtering csv file and passing informations through a list 
 def filtering(trump_tweets) -> None:
     file = open("realdonaldtrump.csv", encoding="utf8")
@@ -20,24 +18,27 @@ def filtering(trump_tweets) -> None:
 
 
 #wrinting trump tweets in a file with the previous list 
-def write_in_txt(trump_tweets, nodes=10) -> None:
+def write_in_txt(trump_tweets: list) -> None:
     output = ""
+    count = 0
     for i, item in enumerate(trump_tweets):
         if item == "##":
+            count += 1
+            if count >= 200:
+                break
             output += "\n"
         else:
             output += item
-            if i < len(trump_tweets) - 1 and trump_tweets[i + 1] != "##":
-                output += ";"
-        
-        if i >= nodes: 
-            with open("text.txt","w", encoding="UTF-8") as f:
-                 f.write(output)
-            return 
+        if i < len(trump_tweets) - 1 and trump_tweets[i + 1] != "##":
+            output += ";"
+    with open("text.txt","w", encoding="UTF-8") as f:
+        f.write(output)
+        return 
     
     
-
-def load_graph(source):
+#In this function : 
+#We load the graph and create mutual nodes between all words extracted from 'text.txt' 
+def load_graph(source: str):
     G = nx.Graph()
     file = open(source, encoding='UTF-8')
     file.readline()
@@ -52,6 +53,18 @@ def load_graph(source):
             if couple[i] not in G:
                 G.add_node(couple[i],nom=couple[i])
     return G
+
+#We reload the graph with the generated sentence which is passed in 'generated_sentence.txt'  
+def reload_graph(source: str):
+    reloaded_G = nx.Graph()
+    file = open(source, encoding='UTF-8')
+    content = file.read()
+    file.close()
+
+    couple = content.split(";")
+    for i in range(len(couple)-1):
+        reloaded_G.add_edge(couple[i], couple[i+1])
+    return reloaded_G
 
 
 def generate_random_color(G):
@@ -84,20 +97,26 @@ def display(G):
     node_color = generate_random_color(G)
     edge_color = generate_random_edge_color(G)
     node_size = set_node_size(G)
-
     nx.draw(G, node_color=node_color, edge_color=edge_color, node_size=node_size, with_labels=True)
     plt.show()
 
-def main(): 
-    trump_tweets = []
-    nodes = int(input("how many nodes to generate ?"))
-    filtering(trump_tweets)
-    write_in_txt(trump_tweets,nodes)
-    G = load_graph("text.txt")
-    display(G)
 
-if __name__ == "__main__": 
-    main()
+def browsing_graph(G, size, numberOfsentences):
+    for i in range(numberOfsentences):
+        actual_node = random.choice(list(G.nodes()))
+        visited_node = []
+        visited_node.append(actual_node)
+        for j in range(1,size):
+            node_neighbors = list(G.neighbors(actual_node))
+            if node_neighbors:
+                actual_node = random.choice(node_neighbors)
+                visited_node.append(actual_node)
+            else:
+                break
+        output = " ".join([str(k) for k in visited_node])
+        print(output)
+        outputInTxt = output.replace(' ',';')
+        with open("generated_sentence.txt","w", encoding="UTF-8") as f:
+            f.write(outputInTxt)
 
-#G = load_graph("text.txt")
-#display(G)
+        
